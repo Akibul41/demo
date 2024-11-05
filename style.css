@@ -12,6 +12,13 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+
+
+
+
+
+
 /* Container */
 .container {
   background-color: rgb(238, 248, 215);
@@ -43,7 +50,8 @@ nav {
   padding: 10px 0;
   margin-bottom: 20px; /* Space below navbar */
   z-index: 10;
-  position: relative;
+  position: sticky ;
+  width: 100%;
 }
 nav ul {
   width: 100%;
@@ -63,6 +71,7 @@ nav a {
   align-items: center;
   color: black;
   text-align: center;
+  
 }
 
 .notice {
@@ -82,10 +91,9 @@ nav li:first-child {
 }
 
 /* Sidebar */
-/* Sidebar adjustments */
+
 .sidebar {
-  position: absolute; /* Changed from fixed to absolute */
-  /* top: 60px; Start the sidebar just below the navbar (adjust this if necessary) */
+  position: absolute;
   right: 0;
   height: calc(100vh - 60px); /* Sidebar height adjusted to not overlap the navbar */
   width: 250px;
@@ -98,6 +106,7 @@ nav li:first-child {
   align-items: flex-start;
   justify-content: flex-start;
   z-index: 1000; /* Ensure it appears above other content */
+
 }
 .sidebar li {
   width: 100%;
@@ -124,7 +133,7 @@ nav li:first-child {
   }
 }
 
-@media(max-width: 400px) {
+@media(max-width: 530px) {
   .sidebar {
       width: 100%;
   }
@@ -211,4 +220,37 @@ nav li:first-child {
   .slide-container {
     width: 100%;  /* Use the full width of the screen on very small devices */
   }
+}
+
+
+/*body of the page*/
+
+.about_section{
+border: 30px solid  rgb(209, 224, 213);
+text-align: justify;
+}
+
+.subHead{
+  border: 2px solid #e7b500;
+  margin-bottom: 30px;
+  background: linear-gradient(to bottom, #c9e7f0, #cecef5);
+}
+
+.title{
+  font-family: 'Playfair Display', serif;
+  color: #1138b8;
+  text-align: center;
+  border: 2px solid #e7b500;
+  background: linear-gradient(to top, #a0d9eb, #cecef5,  #6ac6e2);
+}
+.texx{
+  color: #2c3e50;
+  padding: .2em;
+  margin: .5em;
+   border: 2px solid #088cad;
+   background-color: rgba(255, 215, 0, 0.2);
+}
+p{
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
 }
