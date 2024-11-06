@@ -19,3 +19,17 @@ slideshow();
 
 // Run the slideshow every 3 seconds
 setInterval(slideshow, 3000);
+
+
+
+
+        function showSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.add('open'); // Add the class to show the sidebar
+        }
+
+        function hideSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.remove('open'); // Remove the class to hide the sidebar
+        }
+
