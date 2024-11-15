@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notices - GOVT. MODEL DEGREE COLLEGE, BAGHBAR</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <style>
+        /* Basic styles for the page */
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            font-size: 16px; /* Base font size */
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2em; /* Large heading for the main title */
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .notice-container {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .notice-box {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: calc(25% - 20px);
+            text-align: center;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .notice-box h3 {
+            font-size: 1.25em; /* Notice title font size */
+            margin: 10px 0;
+        }
+
+        .notice-box p {
+            font-size: 0.9em; /* Notice date font size */
+            color: #555;
+        }
+
+        .notice-box:hover {
+            background-color: #f9f9f9;
+            transform: scale(1.05);
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4c4c;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 0.75em;
+            font-weight: bold;
+            border-radius: 5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Make it responsive */
+        @media (max-width: 768px) {
+            .notice-box { width: calc(50% - 20px); }
+        }
+
+        @media (max-width: 480px) {
+            .notice-box { width: 100%; }
+        }
+
+        /* Loading Spinner */
+        #loading {
+            display: none;
+            text-align: center;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+
+        /* Error Message */
+        .error-message {
+            font-size: 1em;
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Notices - GOVT. MODEL DEGREE COLLEGE, BAGHBAR</h1>
+
+        <!-- Loading Indicator -->
+        <div id="loading">
+            <p>Loading notices...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="error-message"></div>
+
+        <!-- Notice Links -->
+        <div id="notice-container" class="notice-container">
+            <!-- Notices will be dynamically added here via JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        function fetchNotices() {
+            const googleDriveUrl = 'https://script.google.com/macros/s/AKfycbyLCPVWHxq-ZZLWYyAVKyvSRjxFogQJNt5KVKPd0J5klGAtVu5RdpYULfLhrzqbzDtMew/exec'; // Replace with your Apps Script URL
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('error-message').innerText = '';
+
+            fetch(googleDriveUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const noticeContainer = document.getElementById('notice-container');
+                    noticeContainer.innerHTML = ''; // Clear the container before adding new notices
+
+                    data.notices.forEach(notice => {
+                        const noticeBox = document.createElement('div');
+                        noticeBox.classList.add('notice-box');
+                        noticeBox.onclick = () => handleNoticeClick(notice.link);
+
+                        if (notice.isNew) {
+                            const newBadge = document.createElement('div');
+                            newBadge.classList.add('new-badge');
+                            newBadge.innerText = 'NEW';
+                            noticeBox.appendChild(newBadge);
+                        }
+
+                        const title = document.createElement('h3');
+                        title.innerText = notice.title;
+                        noticeBox.appendChild(title);
+
+                        const date = document.createElement('p');
+                        date.innerText = `Date: ${notice.date}`;
+                        noticeBox.appendChild(date);
+
+                        noticeContainer.appendChild(noticeBox);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching notices:', error);
+                    document.getElementById('error-message').innerText = 'Failed to load notices. Please try again later.';
+                })
+                .finally(() => {
+                    document.getElementById('loading').style.display = 'none';
+                });
+        }
+
+        function handleNoticeClick(link) {
+            if (link && link !== '#') {
+                window.open(link, '_blank');
+            } else {
+                alert('No file available for download.');
+            }
+        }
+
+        window.onload = fetchNotices;
+    </script>
+</body>
+
+</html>
