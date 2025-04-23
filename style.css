@@ -242,6 +242,7 @@ nav li:first-child {
   align-items: center;
   position: relative;
   margin: 5px 0;  /* Add some spacing around */
+  overflow : hidden;
 
 }
 
