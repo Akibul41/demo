@@ -1,9 +1,9 @@
 const slides = document.querySelectorAll('.slide img'); 
 const description = document.getElementById('description');
 const descriptions = [
-  'Description of Image 1',
-  'Description of Image 2',
-  'Description of Image 3'
+  'Front view of the college',
+  'Principal with staff',
+  'Students on Republic Day'
 ];
 let currentIndex = 0;
 
